@@ -54,7 +54,7 @@ class SSAPI {
     /**
      * Posts data to {apiBase}/{apiEndpoint}.
      * @param {string} apiEndpoint 
-     * @param {Object|string} apiData 
+     * @param {any} apiData 
      * @param {boolean} showResponseData 
      * @returns {boolean|any}
      */
