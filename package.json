@@ -3,8 +3,10 @@
   "version": "1.0.4",
   "description": "NodeJS wrapper for the SpinShare API",
   "main": "src/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "test": ""
+    "test": "",
+    "ts-generate": "tsc src/index.js --declaration --allowJs --emitDeclarationOnly --outDir types"
   },
   "repository": {
     "type": "git",
@@ -24,5 +26,8 @@
   "homepage": "https://github.com/SpinCommunity/ssapi-node#readme",
   "dependencies": {
     "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.2"
   }
 }

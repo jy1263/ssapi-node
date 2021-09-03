@@ -1,16 +1,40 @@
 const axios = require('axios');
 
 class SSAPI {
+    /** 
+     * Base URI for requests made using SSAPI.
+     * @member {string} apiBase 
+     */
     apiBase = "https://spinsha.re/api/";
 	
+    /** 
+     * API key for requests made using Connect API..
+     * @member {string} apiBase 
+     */
+    connectAppApiKey;
+
+    /**
+     * Explicitly set the API Base URI.
+     * @param {string} newApiBase
+     */
 	setApiBase(newApiBase = "http://localhost/www/spinshare/server/public/api/") {
 		this.apiBase = newApiBase;
 	}
 	
+    /**
+     * Set the Connect API's key.
+     * @param {string} newConnectAppApiKey 
+     */
 	setConnectAppApiKey(newConnectAppApiKey) {
 		this.connectAppApiKey = newConnectAppApiKey;
 	}
 
+    /**
+     * Gets data from {apiBase}/{apiEndpoint}.
+     * @param {string} apiEndpoint 
+     * @param {boolean} showResponseData 
+     * @returns {boolean|any}
+     */
     async getOpenData(apiEndpoint, showResponseData) {
         let apiPath = this.apiBase + apiEndpoint;
 
@@ -27,6 +51,13 @@ class SSAPI {
             });
     }
 
+    /**
+     * Posts data to {apiBase}/{apiEndpoint}.
+     * @param {string} apiEndpoint 
+     * @param {Object|string} apiData 
+     * @param {boolean} showResponseData 
+     * @returns {boolean|any}
+     */
     async postOpenData(apiEndpoint, apiData, showResponseData) {
         let apiPath = this.apiBase + apiEndpoint;
 
@@ -43,6 +74,11 @@ class SSAPI {
             });
     }
 
+    /**
+     * Gets a connect token from a connect code.
+     * @param {string} connectCode 
+     * @returns {string|boolean}
+     */
     async getConnectToken(connectCode) {
         let apiPath = this.apiBase + "connect/getToken?connectCode=" + connectCode + "&connectAppApiKey=" + this.connectAppApiKey;
 
@@ -64,6 +100,11 @@ class SSAPI {
         });
     }
 
+    /**
+     * Verifies a connect token's legitimacy.
+     * @param {string} connectToken 
+     * @returns {boolean}
+     */
     async validateConnectToken(connectToken) {
         let apiPath = this.apiBase + "connect/validateToken/?connectToken=" + connectToken;
 
